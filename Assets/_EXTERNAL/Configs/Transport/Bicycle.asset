@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7e5df857fe864c6086f5f95aab4d042, type: 3}
-  m_Name: TransportData
+  m_Name: Bicycle
   m_EditorClassIdentifier: 
-  transport:
-  - Name: Bike
-    MaxSpeed: 20
-    Multiplier: 1.2
-  - Name: Automobile
-    MaxSpeed: 80
-    Multiplier: 1.5
-  - Name: None
-    MaxSpeed: 5
+  <TransportData>k__BackingField:
+    Name: "\u0412\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434"
+    MaxSpeed: 15
     Multiplier: 1
