@@ -13,7 +13,6 @@ namespace Core.Instances
         public TransportInstance(TransportConfig config)
         {
             _runtimeData = new(config.TransportData);
-            Debug.Log($"{_runtimeData.Name} is initialized!");
         }
     }
 }

@@ -1010,6 +1010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555590311}
+  - component: {fileID: 1555590312}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -1037,6 +1038,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1555590312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555590310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91927854552af684b958c6b6bbcc671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefab: {fileID: 8458587428482997335, guid: a3eb0381073f0b24cb9c0469a0bf22ad, type: 3}
+  _content: {fileID: 1701363050}
 --- !u!1 &1701363049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InitData>k__BackingField: {fileID: 373529703}
+  _shop: {fileID: 1555590312}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ namespace Data.TransportData
     [System.Serializable]
     public class TransportData
     {
-        //[Tooltip("Идентификационный номер")] public int ID;
         [Tooltip("Наименование транспорта")] public string Name;
         [Tooltip("Максимальная скорость в км/ч"), Range(1, 150)] public float MaxSpeed;
         [Tooltip("Коэффициент"), Range(1f, 100f)] public float Multiplier;
