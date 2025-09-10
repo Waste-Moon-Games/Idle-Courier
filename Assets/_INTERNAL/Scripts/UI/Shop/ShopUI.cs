@@ -12,7 +12,7 @@ namespace UI.Shop
 
         private List<TransportItem> _items = new();
 
-        public event Action<TransportInstance> OnTSelected;
+        //public event Action<TransportInstance> OnTSelected;
 
         public void ShopInitialize(List<TransportInstance> instances)
         {
