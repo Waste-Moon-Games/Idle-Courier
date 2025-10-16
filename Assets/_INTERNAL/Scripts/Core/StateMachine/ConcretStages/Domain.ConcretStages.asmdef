@@ -1,18 +1,14 @@
 {
-    "name": "Game.Entry",
+    "name": "Domain.ConcretStages",
     "rootNamespace": "",
     "references": [
-        "GUID:e51da5d9e1dbbda49b4341377f92c40e",
-        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec",
-        "GUID:0c6b661c0d16b304084f7b5da9c79e99",
-        "GUID:669fd2b11aa9a994f976be7c9664d1ab",
-        "GUID:3dd845aced05346448a9c99a98338fdf",
-        "GUID:6eadeb968a3c5b941aeb46d6a6b6e74e",
-        "GUID:4205e3cfadeb1114494f284f346b16f5"
+        "GUID:4205e3cfadeb1114494f284f346b16f5",
+        "GUID:669fd2b11aa9a994f976be7c9664d1ab"
     ],
     "includePlatforms": [
         "Android",
         "Editor",
+        "iOS",
         "WebGL"
     ],
     "excludePlatforms": [],

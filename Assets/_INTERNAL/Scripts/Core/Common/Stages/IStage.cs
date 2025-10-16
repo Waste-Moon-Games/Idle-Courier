@@ -1,6 +1,6 @@
 namespace Core
 {
-    interface IStage
+    public interface IStage
     {
         void Enter();
         void Tick();
