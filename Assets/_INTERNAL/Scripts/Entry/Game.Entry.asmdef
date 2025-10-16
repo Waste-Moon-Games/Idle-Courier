@@ -1,11 +1,16 @@
 {
-    "name": "Instances",
+    "name": "Game.Entry",
     "rootNamespace": "",
     "references": [
         "GUID:e51da5d9e1dbbda49b4341377f92c40e",
-        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353"
+        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec",
+        "GUID:0c6b661c0d16b304084f7b5da9c79e99"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "WebGL"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
