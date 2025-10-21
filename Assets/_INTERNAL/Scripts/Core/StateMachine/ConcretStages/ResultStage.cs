@@ -1,4 +1,5 @@
 ﻿using Core.Stages;
+using Entry.EntryData;
 using System;
 using UnityEngine;
 
@@ -7,28 +8,28 @@ namespace Core.StateMachine.ConcretStages
     public class ResultStage : IStage
     {
         private IStageController _controller;
-        private Example _example;
 
-        public ResultStage(IStageController controller, Example example)
+        public ResultStage(IStageController controller, StageDependencies deps)
         {
             _controller = controller;
-            _example = example;
         }
 
         public void Enter()
         {
-            _example.OnButtonClicked += HandleButtonClick;
-            Debug.Log($"Enter {GetType().Name}");
         }
 
         public void Exit()
         {
-            _example.OnButtonClicked -= HandleButtonClick;
-            Debug.Log($"Exit {GetType().Name}");
+            Dispose();
         }
 
         public void Tick()
         {
+        }
+
+        public void Dispose()
+        {
+            _controller = null;
         }
 
         private void HandleButtonClick()

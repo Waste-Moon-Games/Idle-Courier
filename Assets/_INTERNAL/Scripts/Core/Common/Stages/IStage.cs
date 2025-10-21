@@ -5,5 +5,6 @@ namespace Core
         void Enter();
         void Tick();
         void Exit();
+        void Dispose();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Core.StageFactory;
 using Core.Stages;
+using Entry.EntryData;
 using System;
 using UnityEngine;
 
@@ -9,29 +10,30 @@ namespace Core.StateMachine.ConcretStages
     {
         private IStageController _controller;
         private IStageFactory _stageFactory;
-        private Example _example;
 
-        public OrderStageSelection(IStageController controller, Example example)
+        public OrderStageSelection(IStageController controller, StageDependencies deps)
         {
             _controller = controller;
             _stageFactory = _controller.StageFactory;
-            _example = example;
         }
 
         public void Enter()
         {
-            Debug.Log($"Enter {GetType().Name}");
-            _example.OnButtonClicked += HandleButtonClick;
         }
 
         public void Exit()
         {
-            _example.OnButtonClicked -= HandleButtonClick;
-            Debug.Log($"Exit {GetType().Name}");
+            Dispose();
         }
 
         public void Tick()
         {
+        }
+
+        public void Dispose()
+        {
+            _controller = null;
+            _stageFactory = null;
         }
 
         private void HandleButtonClick()

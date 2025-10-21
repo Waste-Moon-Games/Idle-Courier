@@ -1,11 +1,11 @@
 {
-    "name": "Domain.Factory",
+    "name": "Core.Example",
     "rootNamespace": "",
     "references": [
-        "GUID:4205e3cfadeb1114494f284f346b16f5",
-        "GUID:3dd845aced05346448a9c99a98338fdf",
-        "GUID:93c49a101fdc4b74c9d1aebc5cf9f22b",
-        "GUID:d9fb4251719085d45a8d317cad338df7"
+        "GUID:fc0cf36ec0ea42444abadf2659016f99",
+        "GUID:610949e3afd19304b9a690d071f4680c",
+        "GUID:8325452b6419bda4ab806c8cbcac6eea",
+        "GUID:0c6b661c0d16b304084f7b5da9c79e99"
     ],
     "includePlatforms": [
         "Android",

@@ -1,4 +1,7 @@
-﻿using Entry.GlobalServices.SceneLoader;
+﻿using Core.Instances.Main;
+using Data.DistrictData;
+using Entry.GlobalServices.SceneLoader;
+using SO;
 using UnityEngine;
 using Utils.DI;
 using Utils.ModCoroutines;
@@ -29,11 +32,13 @@ namespace Entry
         {
             UILoadingScreen uILoadingPrefab = Resources.Load<UILoadingScreen>("UI/UILoadingScreen");
             Coroutines coroutinesPrefab = Resources.Load<Coroutines>("Utils/[COROUTINES]");
+            DistrictConfigs districtConfigs = Resources.Load<DistrictConfigs>("Configs/DistrictConfigs");
+            TransportConfigs transportConfigs = Resources.Load<TransportConfigs>("Configs/TransportConfigs");
 
             _loadingScreen = Object.Instantiate(uILoadingPrefab);
             _coroutines = Object.Instantiate(coroutinesPrefab);
 
-            RegisterGlobalServices();
+            RegisterGlobalServices(districtConfigs, transportConfigs);
 
             _sceneNavigatorService ??= new(_rootContainer.Resolve<SceneLoaderService>(), _rootContainer);
         }
@@ -43,7 +48,7 @@ namespace Entry
             _sceneNavigatorService.StartFromMainMenu();
         }
 
-        private void RegisterGlobalServices()
+        private void RegisterGlobalServices(DistrictConfigs districtConfigs, TransportConfigs transportConfigs)
         {
             _rootContainer.RegisterInstance(_loadingScreen);
             _rootContainer.RegisterInstance(_coroutines);
@@ -51,6 +56,8 @@ namespace Entry
             _rootContainer.RegisterFactory(
                 s => new SceneLoaderService(_rootContainer.Resolve<UILoadingScreen>(),
                 _rootContainer.Resolve<Coroutines>())).AsSingle();
+
+            _rootContainer.RegisterFactory(i => new InstanceHolder(transportConfigs, districtConfigs)).AsSingle();
         }
     }
 }

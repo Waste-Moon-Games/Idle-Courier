@@ -9,13 +9,10 @@ namespace Core.Instances.Main
         [field: SerializeField] public List<TransportInstance> TransportInstances = new();
         [field: SerializeField] public List<DistrictInstance> DistrictInstances = new();
 
-        public void InitInstances(TransportConfigs config)
+        public InstanceHolder(TransportConfigs transportConfigs, DistrictConfigs districtConfigs)
         {
-            InitTransport(config.Configs);
-        }
-        public void InitInstances(DistrictConfigs config)
-        {
-            InitDistrict(config.Configs);
+            InitTransport(transportConfigs.Configs);
+            InitDistrict(districtConfigs.Configs);
         }
 
         private void InitTransport(List<TransportConfig> transportConfigs)

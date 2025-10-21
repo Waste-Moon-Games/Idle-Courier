@@ -1,11 +1,8 @@
 {
-    "name": "Domain.Factory",
+    "name": "UI.Views",
     "rootNamespace": "",
     "references": [
-        "GUID:4205e3cfadeb1114494f284f346b16f5",
-        "GUID:3dd845aced05346448a9c99a98338fdf",
-        "GUID:93c49a101fdc4b74c9d1aebc5cf9f22b",
-        "GUID:d9fb4251719085d45a8d317cad338df7"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [
         "Android",

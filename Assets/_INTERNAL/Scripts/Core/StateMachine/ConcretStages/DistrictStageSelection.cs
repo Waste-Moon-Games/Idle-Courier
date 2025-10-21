@@ -1,5 +1,7 @@
+using Core.Instances;
 using Core.StageFactory;
 using Core.Stages;
+using Entry.EntryData;
 using UnityEngine;
 
 namespace Core.StateMachine.ConcretStages
@@ -8,32 +10,42 @@ namespace Core.StateMachine.ConcretStages
     {
         private IStageController _controller;
         private IStageFactory _stageFactory;
-        private Example _example;
+        private DistrictListView _districtListView;
 
-        public DistrictStageSelection(IStageController controller, Example example)
+        public DistrictStageSelection(IStageController controller, StageDependencies stageDependencies)
         {
             _controller = controller;
             _stageFactory = _controller.StageFactory;
-            _example = example;
+            _districtListView = stageDependencies.DistrictListView;
         }
 
         public void Enter()
         {
-            Debug.Log($"Enter {GetType().Name}");
-            _example.OnButtonClicked += HandleButtonClick;
+            if (!_districtListView.gameObject.activeSelf)
+                _districtListView.Show();
+
+            _districtListView.OnDistrictSelected += HandleSelectedDistrict;
         }
 
         public void Exit()
         {
-            _example.OnButtonClicked -= HandleButtonClick;
-            Debug.Log($"Exit {GetType().Name}");
+            _districtListView.OnDistrictSelected -= HandleSelectedDistrict;
+            _districtListView.Hide();
+            Dispose();
         }
 
         public void Tick()
         {
         }
 
-        private void HandleButtonClick()
+        public void Dispose()
+        {
+            _controller = null;
+            _stageFactory = null;
+            _districtListView = null;
+        }
+
+        private void HandleSelectedDistrict(DistrictInstance obj)
         {
             _controller.SetStage(_stageFactory.CreateTransportSelectionStage(_controller));
         }

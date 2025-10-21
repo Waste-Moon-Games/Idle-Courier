@@ -1,7 +1,7 @@
-﻿using Core.StageFactory;
+﻿using Core.Instances;
+using Core.StageFactory;
 using Core.Stages;
-using System;
-using UnityEngine;
+using Entry.EntryData;
 
 namespace Core.StateMachine.ConcretStages
 {
@@ -9,33 +9,42 @@ namespace Core.StateMachine.ConcretStages
     {
         private IStageController _controller;
         private IStageFactory _stageFactory;
-        private Example _example;
+        private TransportListView _transportListView;
 
-        public TransportStageSelection(IStageController controller, Example example)
+        public TransportStageSelection(IStageController controller, StageDependencies deps)
         {
             _controller = controller;
             _stageFactory = _controller.StageFactory;
-            _example = example;
+            _transportListView = deps.TransportListView;
         }
 
         public void Enter()
         {
-            _example.OnButtonClicked += HandleButtonClick;
-            Debug.Log($"Enter {GetType().Name}");
+            if (!_transportListView.gameObject.activeSelf)
+                _transportListView.Show();
+
+            _transportListView.OnTransportSelected += HandleSelectedTransport;
         }
 
         public void Exit()
         {
-            _example.OnButtonClicked -= HandleButtonClick;
-            Debug.Log($"Exit {GetType().Name}");
-            
+            _transportListView.OnTransportSelected -= HandleSelectedTransport;
+            _transportListView.Hide();
+            Dispose();
         }
 
         public void Tick()
         {
         }
 
-        private void HandleButtonClick()
+        public void Dispose()
+        {
+            _controller = null;
+            _stageFactory = null;
+            _transportListView = null;
+        }
+
+        private void HandleSelectedTransport(TransportInstance selectedTransport)
         {
             _controller.SetStage(_stageFactory.CreateOrderSelectionStage(_controller));
         }

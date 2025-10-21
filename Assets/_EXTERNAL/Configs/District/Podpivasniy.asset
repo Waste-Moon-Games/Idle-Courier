@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c24980e97e0a340838e6419af9350aad, type: 3}
-  m_Name: Zalupinsky
+  m_Name: Podpivasniy
   m_EditorClassIdentifier: 
   <DistrictData>k__BackingField:
     Logo: {fileID: 0}
-    Name: Zalupinsky
-    Description: zalupa
+    Name: Podpivasniy
+    Description: pivo
     MaxOrder: 4
-    Category: 0000000002000000
+    Category: 030000000400000001000000

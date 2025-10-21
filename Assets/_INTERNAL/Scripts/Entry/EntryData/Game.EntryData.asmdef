@@ -1,7 +1,10 @@
 {
-    "name": "Core.Example",
+    "name": "Game.EntryData",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:fc0cf36ec0ea42444abadf2659016f99",
+        "GUID:669fd2b11aa9a994f976be7c9664d1ab"
+    ],
     "includePlatforms": [
         "Android",
         "Editor",
