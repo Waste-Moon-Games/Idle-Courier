@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Data.DistrictData;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DistrictConfigs", menuName = "Scriptable Objects/DistrictConfigs")]
+[CreateAssetMenu(fileName = "DistrictConfigs", menuName = "Configs/DistrictConfigs")]
 public class DistrictConfigs : ScriptableObject
 {
     [field: SerializeField]

@@ -28,17 +28,17 @@ namespace Core.StageFactory
 
         public IStage CreateOrderSelectionStage(IStageController controller)
         {
-            return new OrderStageSelection(controller);
+            return new OrderStageSelection(controller, _deps);
         }
 
         public IStage CreateExecutionStage(IStageController controller)
         {
-            return new ExecutionStageSelection(controller);
+            return new ExecutionStageSelection(controller, _deps);
         }
 
         public IStage CreateResultStage(IStageController controller)
         {
-            return new ResultStage(controller);
+            return new ResultStage(controller, _deps);
         }
     }
 }

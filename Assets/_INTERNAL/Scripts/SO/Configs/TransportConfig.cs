@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu(fileName = "TransportConfig", menuName = "Scriptable Objects/TransportConfig")]
+    [CreateAssetMenu(fileName = "TransportConfig", menuName = "Configs/TransportConfig")]
     public class TransportConfig : ScriptableObject
     {
         [field: SerializeField] public TransportData TransportData { get; private set; }

@@ -31,6 +31,11 @@ namespace Core.StateMachine.ConcretStages
         {
         }
 
+        public void Dispose()
+        {
+
+        }
+
         private void HandleButtonClick()
         {
             _controller.SetStage(_stageFactory.CreateResultStage(_controller));

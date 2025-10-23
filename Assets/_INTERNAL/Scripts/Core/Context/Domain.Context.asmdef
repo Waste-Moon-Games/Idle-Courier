@@ -1,0 +1,21 @@
+{
+    "name": "Domain.Context",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8325452b6419bda4ab806c8cbcac6eea"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
