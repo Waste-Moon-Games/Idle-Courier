@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: Hui 2
   m_EditorClassIdentifier: 
   <Category>k__BackingField: 1
-  <OrderItem>k__BackingField: []
+  <OrderItem>k__BackingField:
+  - Icon: {fileID: -2413806693520163455, guid: 475e702b146300743bd3da61e3f48df1, type: 3}
+    Name: "\u0422\u0435\u043B\u0435\u0432\u0438\u0437\u043E\u0440"
+    PriceForDelivery: 20
+  - Icon: {fileID: -2413806693520163455, guid: 475e702b146300743bd3da61e3f48df1, type: 3}
+    Name: "\u0414\u0440\u0435\u043B\u044C"
+    PriceForDelivery: 10

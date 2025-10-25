@@ -1,3 +1,4 @@
+using Core.Context;
 using Core.Instances;
 using Core.StageFactory;
 using Core.Stages;
@@ -11,12 +12,14 @@ namespace Core.StateMachine.ConcretStages
         private IStageController _controller;
         private IStageFactory _stageFactory;
         private DistrictListView _districtListView;
+        private DeliveryContext _contex;
 
         public DistrictStageSelection(IStageController controller, StageDependencies stageDependencies)
         {
             _controller = controller;
             _stageFactory = _controller.StageFactory;
             _districtListView = stageDependencies.DistrictListView;
+            _contex = stageDependencies.DeliveryContex;
         }
 
         public void Enter()
@@ -47,6 +50,7 @@ namespace Core.StateMachine.ConcretStages
 
         private void HandleSelectedDistrict(DistrictInstance obj)
         {
+            _contex.SetDistrict(obj);
             _controller.SetStage(_stageFactory.CreateTransportSelectionStage(_controller));
         }
     }

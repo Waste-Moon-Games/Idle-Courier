@@ -16,6 +16,7 @@
     "includePlatforms": [
         "Android",
         "Editor",
+        "iOS",
         "WebGL"
     ],
     "excludePlatforms": [],

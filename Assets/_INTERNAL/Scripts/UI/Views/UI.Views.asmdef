@@ -2,7 +2,8 @@
     "name": "UI.Views",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec"
     ],
     "includePlatforms": [
         "Android",

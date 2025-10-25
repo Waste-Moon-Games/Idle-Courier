@@ -8,6 +8,6 @@ namespace Data.OrderData
     {
         [Tooltip("Иконка")] public Sprite Icon;
         [Tooltip("Наименование")] public string Name;
-        [Tooltip("Стоимость")] public float Price;
+        [Tooltip("Базовая стоимость доставки единицы товара")] public float PriceForDelivery;
     }
 }

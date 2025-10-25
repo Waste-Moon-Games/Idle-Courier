@@ -16,5 +16,6 @@ MonoBehaviour:
     Logo: {fileID: 0}
     Name: Podpivasniy
     Description: pivo
+    PricePerDistanceUnit: 3
     MaxOrder: 4
     Category: 030000000400000001000000

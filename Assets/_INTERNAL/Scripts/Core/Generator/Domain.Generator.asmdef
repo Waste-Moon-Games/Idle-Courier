@@ -1,7 +1,11 @@
 {
     "name": "Domain.Generator",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353",
+        "GUID:d9fb4251719085d45a8d317cad338df7",
+        "GUID:e51da5d9e1dbbda49b4341377f92c40e"
+    ],
     "includePlatforms": [
         "Android",
         "Editor",

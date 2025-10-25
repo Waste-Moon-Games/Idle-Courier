@@ -10,30 +10,35 @@ public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Canvas _parent;
 
+    [SerializeField] private ItemsCategoryConfigs _itemsCategoryConfigs;
+    [SerializeField] private OrdersGeneratorConfig _ordersGeneratorConfig;
+
     public void Run(DIContainer rootContainer)
     {
         DIContainer sceneContainer = new(rootContainer);
         InstanceHolder holder = sceneContainer.Resolve<InstanceHolder>();
 
-        LoadResources(out DistrictListView dListView, out TransportListView tListView);
+        LoadResources(out DistrictListView dListView, out TransportListView tListView, out OrderListView oListView);
         
         dListView.Init(holder.DistrictInstances);
-        //dListView.Show();
         tListView.Init(holder.TransportInstances);
 
-        StageDependencies sd = new(dListView, tListView);
+        StageDependencies sd = new(dListView, tListView, oListView);
+        sd.InitConfigs(_ordersGeneratorConfig, _itemsCategoryConfigs);
         Factory fc = new(sd);
 
         StageController sc = new(fc);
         sc.StartCycle();
     }
 
-    private void LoadResources(out DistrictListView districtListView, out TransportListView transportListView)
+    private void LoadResources(out DistrictListView districtListView, out TransportListView transportListView, out OrderListView orderListView)
     {
         DistrictListView dPrefab = Resources.Load<DistrictListView>("UI/Lists/DistrictList");
         TransportListView tPrefab = Resources.Load<TransportListView>("UI/Lists/TransportList");
+        OrderListView oPrefab = Resources.Load<OrderListView>("UI/Lists/OrderList");
 
         districtListView = Instantiate(dPrefab, _parent.transform);
         transportListView = Instantiate(tPrefab, _parent.transform);
+        orderListView = Instantiate(oPrefab, _parent.transform);
     }
 }

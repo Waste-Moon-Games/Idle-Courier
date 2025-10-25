@@ -10,6 +10,7 @@ namespace Data.DistrictData
         [Tooltip("Логотип района")] public Sprite Logo;
         [Tooltip("Название района")] public string Name;
         [Tooltip("Описание")] public string Description;
+        [Tooltip("Стоимость за единицу расстояния")] public int PricePerDistanceUnit;
         [Tooltip("Максимальное количество активных заказов")] public int MaxOrder;
         [Tooltip("Доступные категории заказов")] public List<Category> Category;
     }
@@ -19,6 +20,7 @@ namespace Data.DistrictData
         public Sprite Logo;
         public string Name;
         public string Description;
+        public int PricePerDistanceUnit;
         public int MaxOrder;
         public List<Category> Category;
 
@@ -27,6 +29,7 @@ namespace Data.DistrictData
             Logo = sourseData.Logo;
             Name = sourseData.Name;
             Description = sourseData.Description;
+            PricePerDistanceUnit = sourseData.PricePerDistanceUnit;
             MaxOrder = sourseData.MaxOrder;
             Category = sourseData.Category;
         }

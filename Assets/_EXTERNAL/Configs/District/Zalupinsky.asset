@@ -16,5 +16,6 @@ MonoBehaviour:
     Logo: {fileID: 0}
     Name: Zalupinsky
     Description: zalupa
+    PricePerDistanceUnit: 10
     MaxOrder: 4
     Category: 0000000002000000

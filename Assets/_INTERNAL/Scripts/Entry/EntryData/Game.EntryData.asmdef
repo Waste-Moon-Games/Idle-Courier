@@ -3,7 +3,9 @@
     "rootNamespace": "",
     "references": [
         "GUID:fc0cf36ec0ea42444abadf2659016f99",
-        "GUID:669fd2b11aa9a994f976be7c9664d1ab"
+        "GUID:669fd2b11aa9a994f976be7c9664d1ab",
+        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353",
+        "GUID:8bd6e2a06d8e2454fa54bce6fc83eacf"
     ],
     "includePlatforms": [
         "Android",

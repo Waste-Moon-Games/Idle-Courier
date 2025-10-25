@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a12d72d93bc4b747ba7a019c88f4c88, type: 3}
+  m_Name: GeneratorConfig
+  m_EditorClassIdentifier: 
+  <InitialCountItemGenerated>k__BackingField: 5
+  <MinDistance>k__BackingField: 10
+  <MaxDistance>k__BackingField: 1000
+  <MinUrgencyMultiplier>k__BackingField: 0.5
+  <MaxUrgencyMultiplier>k__BackingField: 2
+  <MinItemCount>k__BackingField: 1
+  <MaxItemCount>k__BackingField: 50

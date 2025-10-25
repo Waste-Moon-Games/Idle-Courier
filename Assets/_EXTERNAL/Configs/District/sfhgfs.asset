@@ -16,5 +16,6 @@ MonoBehaviour:
     Logo: {fileID: 0}
     Name: sfhgfs
     Description: sfhgfs55
+    PricePerDistanceUnit: 5
     MaxOrder: 4
     Category: 0000000001000000

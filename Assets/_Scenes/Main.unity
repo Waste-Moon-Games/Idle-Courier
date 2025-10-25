@@ -227,8 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e838c46f1e6bfb44088434b6f93ab8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _examplePrefab: {fileID: 3477147376939206693, guid: 30003d6248edc6f4da2d1ff25f50a018, type: 3}
   _parent: {fileID: 1584770901}
+  _itemsCategoryConfigs: {fileID: 11400000, guid: b546f0595b1ddd64d8f9be9b8c57a6e1, type: 2}
+  _ordersGeneratorConfig: {fileID: 11400000, guid: 01a9ef9a9273b204b81a9f5946f08c61, type: 2}
 --- !u!4 &677612916
 Transform:
   m_ObjectHideFlags: 0
