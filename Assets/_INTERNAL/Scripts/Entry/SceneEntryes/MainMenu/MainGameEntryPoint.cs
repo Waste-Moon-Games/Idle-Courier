@@ -1,9 +1,4 @@
-using Core.Instances.Main;
-using Core.StageFactory;
-using Core.StateMachine;
-using Entry.EntryData;
 using R3;
-using UI.Lists;
 using UI.Roots.MainGameRootView;
 using UI.Views.MainGameViews;
 using UnityEngine;
@@ -23,7 +18,7 @@ namespace Entry.SceneEntryes.MainMenu
             CreateMainGameScene(sceneContainer);
 
             _loader.LoadRoot(out UIMainGameRootView rootView);
-            _loader.LoadViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView);
+            _loader.LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView);
 
             rootView.AttachUI(buttonsView.gameObject);
             rootView.AttachUI(hudView.gameObject);
