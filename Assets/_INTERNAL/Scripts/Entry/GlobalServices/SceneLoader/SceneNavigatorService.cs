@@ -1,5 +1,9 @@
 ﻿using Core.Consts;
+using Entry.SceneEntryes.MainMenu;
+using R3;
 using System;
+using UI.Views.MainGameViews;
+using UnityEngine;
 using Utils.DI;
 using Object = UnityEngine.Object;
 
@@ -9,6 +13,7 @@ namespace Entry.GlobalServices.SceneLoader
     {
         private readonly SceneLoaderService _sceneLoader;
         private readonly DIContainer _rootContainer;
+        private readonly CompositeDisposable _disposables = new();
 
         private DIContainer _cachedContainer;
 
@@ -20,14 +25,18 @@ namespace Entry.GlobalServices.SceneLoader
 
         public void StartFromMainMenu()
         {
-            LoadScene(SceneNames.MAIN_MENU);
+            LoadScene(SceneNames.MAIN_GAME_SCENE);
         }
 
         private void LoadScene(string sceneName)
         {
             _cachedContainer = null;
 
-            _sceneLoader.OnSceneLoaded += OnSceneLoaded;
+            _sceneLoader.OnSceneLoaded
+                .Where(loadedScene => loadedScene == sceneName)
+                .Take(1)
+                .Subscribe(OnSceneLoaded)
+                .AddTo(_disposables);
 
             _sceneLoader.LoadScene(sceneName);
         }
@@ -36,23 +45,37 @@ namespace Entry.GlobalServices.SceneLoader
         {
             switch (sceneName)
             {
-                case SceneNames.MAIN_MENU:
-                    CreateMainMenu();
+                case SceneNames.MAIN_GAME_SCENE:
+                    CreateMainGameScene();
                     break;
             }
         }
 
-        private void CreateMainMenu()
+        private void CreateMainGameScene()
         {
-            var container = _cachedContainer = new(_rootContainer);
-            var entryPoint = Object.FindFirstObjectByType<MainMenuEntryPoint>();
+            var sceneContainer = _cachedContainer = new(_rootContainer);
+            var entryPoint = Object.FindFirstObjectByType<MainGameEntryPoint>();
 
-            entryPoint.Run(container);
+            entryPoint.Run(sceneContainer).Subscribe(action =>
+            {
+                //todo перебор action, переход на соответствующую сцену (LoadScene(sceneName)) 
+                switch (action)
+                {
+                    case MainGameSceneButtonActions.SomeTo:
+                        Debug.Log("Переход на первую сцену");
+                        break;
+                    case MainGameSceneButtonActions.SecondSomeTo:
+                        Debug.Log("Переход на вторую сцену");
+                        break;
+                }
+            }).AddTo(_disposables);
         }
+
+        //todo аналогичные CreateScene-методы для разных сцен
 
         public void Dispose()
         {
-            _sceneLoader.OnSceneLoaded -= OnSceneLoaded;
+            _disposables.Dispose();
         }
     }
 }

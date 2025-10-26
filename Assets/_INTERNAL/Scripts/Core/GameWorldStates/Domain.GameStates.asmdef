@@ -1,16 +1,9 @@
 {
-    "name": "Domain.ConcretStages",
+    "name": "Domain.GameStates",
     "rootNamespace": "",
     "references": [
-        "GUID:4205e3cfadeb1114494f284f346b16f5",
-        "GUID:669fd2b11aa9a994f976be7c9664d1ab",
         "GUID:8325452b6419bda4ab806c8cbcac6eea",
-        "GUID:e51da5d9e1dbbda49b4341377f92c40e",
-        "GUID:d9fb4251719085d45a8d317cad338df7",
-        "GUID:0c6b661c0d16b304084f7b5da9c79e99",
-        "GUID:2465697512cd1ba4a97eb4e6758a7e55",
-        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353",
-        "GUID:8bd6e2a06d8e2454fa54bce6fc83eacf"
+        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353"
     ],
     "includePlatforms": [
         "Android",

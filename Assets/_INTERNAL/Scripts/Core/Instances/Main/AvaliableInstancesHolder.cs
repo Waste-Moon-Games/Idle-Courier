@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Core.Instances.Main
 {
-    public class InstanceHolder
+    public class AvaliableInstancesHolder
     {
         [field: SerializeField] public List<TransportInstance> TransportInstances = new();
         [field: SerializeField] public List<DistrictInstance> DistrictInstances = new();
 
-        public InstanceHolder(TransportConfigs transportConfigs, DistrictConfigs districtConfigs)
+        public AvaliableInstancesHolder(TransportConfigs transportConfigs, DistrictConfigs districtConfigs)
         {
             InitTransport(transportConfigs.Configs);
             InitDistrict(districtConfigs.Configs);

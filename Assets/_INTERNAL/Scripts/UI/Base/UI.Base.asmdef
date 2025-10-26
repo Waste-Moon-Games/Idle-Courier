@@ -1,13 +1,7 @@
 {
-    "name": "UI.Lists",
+    "name": "UI.Base",
     "rootNamespace": "",
-    "references": [
-        "GUID:90af2163df75cce498f243a1241235e0",
-        "GUID:fc0cf36ec0ea42444abadf2659016f99",
-        "GUID:610949e3afd19304b9a690d071f4680c",
-        "GUID:8325452b6419bda4ab806c8cbcac6eea",
-        "GUID:e51da5d9e1dbbda49b4341377f92c40e"
-    ],
+    "references": [],
     "includePlatforms": [
         "Android",
         "Editor",

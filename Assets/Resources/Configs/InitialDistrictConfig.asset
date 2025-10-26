@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a5758393c4b74f3c85b22676a9897a1, type: 3}
-  m_Name: DistrictConfigs
+  m_Name: InitialDistrictConfig
   m_EditorClassIdentifier: 
   <Configs>k__BackingField:
-  - {fileID: 11400000, guid: 2e057134503f74e0c9bb8783f519ed2d, type: 2}
   - {fileID: 11400000, guid: 0cfdf18c7492dd8479c58713cce6330c, type: 2}
-  - {fileID: 11400000, guid: d6dfafb54eff5d84fb2feac115d2c5cf, type: 2}

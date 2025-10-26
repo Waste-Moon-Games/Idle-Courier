@@ -3,7 +3,7 @@ using Core.Instances;
 using Core.StageFactory;
 using Core.Stages;
 using Entry.EntryData;
-using UnityEngine;
+using UI.Lists;
 
 namespace Core.StateMachine.ConcretStages
 {

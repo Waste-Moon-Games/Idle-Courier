@@ -6,43 +6,46 @@ using UI.Base;
 using UI.Views;
 using UnityEngine;
 
-public class TransportListView : UIListBase
+namespace UI.Lists
 {
-    [SerializeField] private TransportView _transportViewPrefab;
-    [SerializeField] private Transform _content;
-
-    private List<TransportView> _transportViews = new();
-    private List<TransportController> _transportControllers = new();
-
-    public event Action<TransportInstance> OnTransportSelected;
-
-    private void OnDestroy()
+    public class TransportListView : UIListBase
     {
-        foreach (var item in _transportControllers)
-        {
-            item.OnTransportSelected -= HandleSelectedTransport;
-        }
-    }
+        [SerializeField] private TransportView _transportViewPrefab;
+        [SerializeField] private Transform _content;
 
-    public void Init(List<TransportInstance> transportInstances)
-    {
-        for (int i = 0; i < transportInstances.Count; i++)
-        {
-            TransportView newTransport = Instantiate(_transportViewPrefab, _content);
-            _transportViews.Add(newTransport);
+        private List<TransportView> _transportViews = new();
+        private List<TransportController> _transportControllers = new();
 
-            TransportController newController = new(transportInstances[i], newTransport, i);
-            newController.Init();
-            _transportControllers.Add(newController);
-        }
-        foreach (var item in _transportControllers)
-        {
-            item.OnTransportSelected += HandleSelectedTransport;
-        }
-    }
+        public event Action<TransportInstance> OnTransportSelected;
 
-    private void HandleSelectedTransport(TransportInstance obj)
-    {
-        OnTransportSelected?.Invoke(obj);
+        private void OnDestroy()
+        {
+            foreach (var item in _transportControllers)
+            {
+                item.OnTransportSelected -= HandleSelectedTransport;
+            }
+        }
+
+        public void Init(List<TransportInstance> transportInstances)
+        {
+            for (int i = 0; i < transportInstances.Count; i++)
+            {
+                TransportView newTransport = Instantiate(_transportViewPrefab, _content);
+                _transportViews.Add(newTransport);
+
+                TransportController newController = new(transportInstances[i], newTransport, i);
+                newController.Init();
+                _transportControllers.Add(newController);
+            }
+            foreach (var item in _transportControllers)
+            {
+                item.OnTransportSelected += HandleSelectedTransport;
+            }
+        }
+
+        private void HandleSelectedTransport(TransportInstance obj)
+        {
+            OnTransportSelected?.Invoke(obj);
+        }
     }
 }

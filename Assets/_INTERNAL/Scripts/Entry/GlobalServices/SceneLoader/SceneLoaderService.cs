@@ -1,4 +1,4 @@
-﻿using System;
+﻿using R3;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,10 +10,12 @@ namespace Entry.GlobalServices.SceneLoader
     {
         private readonly UILoadingScreen _loadindScreen;
         private readonly Coroutines _coroutine;
+        private readonly Subject<float> _progressUpdatedSignal = new();
+        private readonly Subject<string> _sceneLoadedSignal = new();
 
-        public event Action<float> OnProgressUpdated;
+        public Observable<float> OnProgressUpdated => _progressUpdatedSignal.AsObservable();
 
-        public event Action<string> OnSceneLoaded;
+        public Observable<string> OnSceneLoaded => _sceneLoadedSignal.AsObservable();
 
         public SceneLoaderService(UILoadingScreen loadindScreen, Coroutines coroutine)
         {
@@ -36,13 +38,13 @@ namespace Entry.GlobalServices.SceneLoader
             while (!asyncOp.isDone)
             {
                 _loadindScreen.SetLoadingProgress(asyncOp.progress / 0.9f);
-                OnProgressUpdated?.Invoke(asyncOp.progress / 0.9f);
+                _progressUpdatedSignal.OnNext(asyncOp.progress / 0.9f);
                 yield return null;
             }
 
             _loadindScreen.HideLoadingScreen();
 
-            OnSceneLoaded?.Invoke(sceneName);
+            _sceneLoadedSignal.OnNext(sceneName);
         }
     }
 }

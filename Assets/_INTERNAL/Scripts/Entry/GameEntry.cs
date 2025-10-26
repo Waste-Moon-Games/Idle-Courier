@@ -1,4 +1,5 @@
-﻿using Core.Instances.Main;
+﻿using Core.GameWorldStates;
+using Core.Instances.Main;
 using Data.DistrictData;
 using Entry.GlobalServices.SceneLoader;
 using SO;
@@ -32,8 +33,9 @@ namespace Entry
         {
             UILoadingScreen uILoadingPrefab = Resources.Load<UILoadingScreen>("UI/UILoadingScreen");
             Coroutines coroutinesPrefab = Resources.Load<Coroutines>("Utils/[COROUTINES]");
-            DistrictConfigs districtConfigs = Resources.Load<DistrictConfigs>("Configs/DistrictConfigs");
-            TransportConfigs transportConfigs = Resources.Load<TransportConfigs>("Configs/TransportConfigs");
+
+            DistrictConfigs districtConfigs = Resources.Load<DistrictConfigs>("Configs/InitialDistrictConfig");
+            TransportConfigs transportConfigs = Resources.Load<TransportConfigs>("Configs/InitialTransportConfig");
 
             _loadingScreen = Object.Instantiate(uILoadingPrefab);
             _coroutines = Object.Instantiate(coroutinesPrefab);
@@ -57,7 +59,7 @@ namespace Entry
                 s => new SceneLoaderService(_rootContainer.Resolve<UILoadingScreen>(),
                 _rootContainer.Resolve<Coroutines>())).AsSingle();
 
-            _rootContainer.RegisterFactory(i => new InstanceHolder(transportConfigs, districtConfigs)).AsSingle();
+            _rootContainer.RegisterFactory(g => new GameState(transportConfigs, districtConfigs)).AsSingle();
         }
     }
 }
