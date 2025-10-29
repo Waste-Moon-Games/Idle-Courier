@@ -46,6 +46,7 @@ namespace Core.StateMachine.ConcretStages
             _controller = null;
             _stageFactory = null;
             _districtListView = null;
+            _contex = null;
         }
 
         private void HandleSelectedDistrict(DistrictInstance obj)

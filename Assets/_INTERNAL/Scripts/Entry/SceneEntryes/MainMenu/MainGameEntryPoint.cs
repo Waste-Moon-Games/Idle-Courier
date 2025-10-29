@@ -1,3 +1,6 @@
+using Core.Context;
+using Core.Controllers.MainGame;
+using Entry.SceneEntryes.Gameplay;
 using R3;
 using UI.Roots.MainGameRootView;
 using UI.Views.MainGameViews;
@@ -10,20 +13,38 @@ namespace Entry.SceneEntryes.MainMenu
     {
         [SerializeField] private ResourceLoader _loader;
 
-        [SerializeField] private ItemsCategoryConfigs _itemsCategoryConfigs;
-        [SerializeField] private OrdersGeneratorConfig _ordersGeneratorConfig;
+        private readonly CompositeDisposable _disposables = new();
 
-        public Observable<MainGameSceneButtonActions> Run(DIContainer sceneContainer)
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+        }
+
+        public Observable<MainGameExitParams> Run(DIContainer sceneContainer)
         {
             CreateMainGameScene(sceneContainer);
 
             _loader.LoadRoot(out UIMainGameRootView rootView);
-            _loader.LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView);
+            _loader.LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView, out UIMainGameDeliveryContextView contextView);
 
             rootView.AttachUI(buttonsView.gameObject);
             rootView.AttachUI(hudView.gameObject);
+            rootView.AttachUI(contextView.gameObject);
 
-            return buttonsView.MainGameActions;
+            var startDeliverySignal = new Subject<DeliveryContext>();
+            GameplayEnterParams gameplayEnterParams = new();
+
+            contextView.Bind(startDeliverySignal);
+            UIMainGameController mainGameViewController = new(buttonsView, contextView, hudView);
+
+            contextView.ContextIsReady.Subscribe(contex =>
+            {
+                gameplayEnterParams.SetContex(contex);
+            }).AddTo(_disposables);
+
+            MainGameExitParams mainGameExitParams = new(gameplayEnterParams);
+
+            return startDeliverySignal.Select(_ => mainGameExitParams);
         }
 
         private void CreateMainGameScene(DIContainer sceneContainer)

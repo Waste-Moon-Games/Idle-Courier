@@ -1,12 +1,7 @@
 {
-    "name": "UI.Views",
+    "name": "Core.GameRoot",
     "rootNamespace": "",
-    "references": [
-        "GUID:90af2163df75cce498f243a1241235e0",
-        "GUID:8bd6e2a06d8e2454fa54bce6fc83eacf",
-        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
-    ],
+    "references": [],
     "includePlatforms": [
         "Android",
         "Editor",

@@ -7,13 +7,15 @@ namespace Entry.SceneEntryes.MainMenu
 {
     public class ResourceLoader : MonoBehaviour
     {
-        public void LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView)
+        public void LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView, out UIMainGameDeliveryContextView contextView)
         {
             UIMainGameButtonsView buttonsViewPrefab = Resources.Load<UIMainGameButtonsView>("UI/Views/MainGame/UIMainGameButtonsView");
             UIMainGameHUDView hudViewPrefab = Resources.Load<UIMainGameHUDView>("UI/Views/MainGame/UIMainGameHUDView");
+            UIMainGameDeliveryContextView contextViewPrefab = Resources.Load<UIMainGameDeliveryContextView>("UI/Views/MainGame/UIMainGameDeliveryContextView");
 
             buttonsView = Instantiate(buttonsViewPrefab);
             hudView = Instantiate(hudViewPrefab);
+            contextView = Instantiate(contextViewPrefab);
         }
 
         public void LoadRoot(out UIMainGameRootView rootView)

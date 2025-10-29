@@ -4,5 +4,6 @@ namespace Core.Consts
     {
         public const string BOOT = "Boot";
         public const string MAIN_GAME_SCENE = "Main";
+        public const string GAMEPLAY_SCENE = "Gameplay";
     }
 }

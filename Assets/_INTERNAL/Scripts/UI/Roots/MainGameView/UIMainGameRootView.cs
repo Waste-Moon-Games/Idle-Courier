@@ -9,6 +9,7 @@ namespace UI.Roots.MainGameRootView
         public void AttachUI(GameObject uiObject)
         {
             uiObject.transform.SetParent(_sceneContentContainer, false);
+            Debug.Log($"View attached: {uiObject.GetType().Name}");
         }
     }
 }

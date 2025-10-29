@@ -1,7 +1,10 @@
 ﻿using Core.Consts;
+using Core.GameRoot;
+using Entry.SceneEntryes.Gameplay;
 using Entry.SceneEntryes.MainMenu;
 using R3;
 using System;
+using System.ComponentModel.DataAnnotations;
 using UI.Views.MainGameViews;
 using UnityEngine;
 using Utils.DI;
@@ -28,25 +31,28 @@ namespace Entry.GlobalServices.SceneLoader
             LoadScene(SceneNames.MAIN_GAME_SCENE);
         }
 
-        private void LoadScene(string sceneName)
+        private void LoadScene(string sceneName, SceneEnterParams enterParams = null)
         {
-            _cachedContainer = null;
+            _cachedContainer?.Dispose();
 
             _sceneLoader.OnSceneLoaded
                 .Where(loadedScene => loadedScene == sceneName)
                 .Take(1)
-                .Subscribe(OnSceneLoaded)
+                .Subscribe(sceneName => OnSceneLoaded(sceneName, enterParams))
                 .AddTo(_disposables);
 
             _sceneLoader.LoadScene(sceneName);
         }
 
-        private void OnSceneLoaded(string sceneName)
+        private void OnSceneLoaded(string sceneName, SceneEnterParams enterParams = null)
         {
             switch (sceneName)
             {
                 case SceneNames.MAIN_GAME_SCENE:
                     CreateMainGameScene();
+                    break;
+                case SceneNames.GAMEPLAY_SCENE:
+                    CreateGameplayScene(enterParams.As<GameplayEnterParams>());
                     break;
             }
         }
@@ -56,19 +62,21 @@ namespace Entry.GlobalServices.SceneLoader
             var sceneContainer = _cachedContainer = new(_rootContainer);
             var entryPoint = Object.FindFirstObjectByType<MainGameEntryPoint>();
 
-            entryPoint.Run(sceneContainer).Subscribe(action =>
+            entryPoint.Run(sceneContainer).Subscribe(mainGameExitParams =>
             {
-                //todo перебор action, переход на соответствующую сцену (LoadScene(sceneName)) 
-                switch (action)
-                {
-                    case MainGameSceneButtonActions.SomeTo:
-                        Debug.Log("Переход на первую сцену");
-                        break;
-                    case MainGameSceneButtonActions.SecondSomeTo:
-                        Debug.Log("Переход на вторую сцену");
-                        break;
-                }
+                string targetSceneName = mainGameExitParams.TargetSceneEnterParams.SceneName;
+
+                if (targetSceneName == SceneNames.GAMEPLAY_SCENE)
+                    LoadScene(targetSceneName, mainGameExitParams.TargetSceneEnterParams);
             }).AddTo(_disposables);
+        }
+
+        private void CreateGameplayScene(GameplayEnterParams enterParams = null)
+        {
+            var sceneContainer = _cachedContainer = new(_rootContainer);
+            var entryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
+
+            entryPoint.Run(sceneContainer, enterParams);
         }
 
         //todo аналогичные CreateScene-методы для разных сцен

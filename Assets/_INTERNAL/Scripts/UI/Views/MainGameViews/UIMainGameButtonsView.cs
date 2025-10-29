@@ -6,12 +6,12 @@ namespace UI.Views.MainGameViews
 {
     public enum MainGameSceneButtonActions
     {
-        SomeTo, SecondSomeTo
+        StartDeliveryPreparations, SecondSomeTo
     }
 
     public class UIMainGameButtonsView : MonoBehaviour
     {
-        [SerializeField] private Button _someGoToButton;
+        [SerializeField] private Button _openDeliveryPreparations;
         [SerializeField] private Button _secondSomeGoToButton;
 
         private readonly Subject<MainGameSceneButtonActions> _actions = new();
@@ -30,25 +30,25 @@ namespace UI.Views.MainGameViews
 
         private void ButtonsSubscribe()
         {
-            if (_someGoToButton == null || _secondSomeGoToButton == null)
+            if (_openDeliveryPreparations == null || _secondSomeGoToButton == null)
                 return;
 
-            _someGoToButton.onClick.AddListener(HandleSomeGoToClick);
+            _openDeliveryPreparations.onClick.AddListener(HandleDeliveryPreparations);
             _secondSomeGoToButton.onClick.AddListener(HandleSecondSomeToGoClick);
         }
 
         private void ButtonsUnsubscribe()
         {
-            if (_someGoToButton == null || _secondSomeGoToButton == null)
+            if (_openDeliveryPreparations == null || _secondSomeGoToButton == null)
                 return;
 
-            _someGoToButton.onClick.RemoveListener(HandleSomeGoToClick);
+            _openDeliveryPreparations.onClick.RemoveListener(HandleDeliveryPreparations);
             _secondSomeGoToButton.onClick.RemoveListener(HandleSecondSomeToGoClick);
         }
 
-        private void HandleSomeGoToClick()
+        private void HandleDeliveryPreparations()
         {
-            _actions.OnNext(MainGameSceneButtonActions.SomeTo);
+            _actions.OnNext(MainGameSceneButtonActions.StartDeliveryPreparations);
         }
 
         private void HandleSecondSomeToGoClick()
