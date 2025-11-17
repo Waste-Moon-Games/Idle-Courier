@@ -1,4 +1,3 @@
-using Data.CategoriesData;
 using Data.OrderData;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,7 +74,6 @@ namespace Core.Generator
             };
             generatedItem.Price = CalculateFinalPrice
                 (randomCategoryID, randomItemID, generatedItem.UrgencyMultipler, generatedItem.Count, generatedItem.Distance);
-            Debug.Log($"{generatedItem.ItemData.Name} price: {generatedItem.Price} ppud: {_pricePerDistance}");
             return generatedItem;
         }
         

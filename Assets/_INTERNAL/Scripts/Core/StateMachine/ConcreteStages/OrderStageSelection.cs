@@ -1,8 +1,10 @@
 ﻿using Core.Context;
+using Core.GameWorldStates;
 using Core.Generator;
 using Core.StageFactory;
 using Core.Stages;
 using Entry.EntryData;
+using System;
 using UI.Lists;
 
 namespace Core.StateMachine.ConcretStages
@@ -15,6 +17,8 @@ namespace Core.StateMachine.ConcretStages
         private OrdersGenerator _ordersGenerator;
         private OrdersGeneratorConfig _ordersConfig;
         private DeliveryContext _context;
+
+        public event Action OnStageCompleted;
 
         public OrderStageSelection(IStageController controller, StageDependencies stageDependencies)
         {
@@ -60,7 +64,8 @@ namespace Core.StateMachine.ConcretStages
 
         private void HandleSelectedOrder(OrderGeneratedData data)
         {
-            _controller.SetStage(_stageFactory.CreateExecutionStage(_controller));
+            _context.SetOrder(data);
+            OnStageCompleted?.Invoke();
         }
     }
 }

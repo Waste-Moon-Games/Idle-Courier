@@ -1,12 +1,15 @@
 using Entry.SceneEntryes.Gameplay;
+using R3;
 using UnityEngine;
 using Utils.DI;
 
 public class GameplayEntryPoint : MonoBehaviour
 {
-    public void Run(DIContainer sceneContainer, GameplayEnterParams enterParams)
+    public Observable<Unit> Run(DIContainer sceneContainer, GameplayEnterParams enterParams)
     {
         CreateGameplayScene(sceneContainer);
+
+        return null;
     }
 
     private void CreateGameplayScene(DIContainer sceneContainer)

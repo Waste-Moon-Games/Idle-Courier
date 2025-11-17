@@ -76,7 +76,7 @@ namespace Entry.GlobalServices.SceneLoader
             var sceneContainer = _cachedContainer = new(_rootContainer);
             var entryPoint = Object.FindFirstObjectByType<GameplayEntryPoint>();
 
-            entryPoint.Run(sceneContainer, enterParams);
+            entryPoint.Run(sceneContainer, enterParams).Subscribe();
         }
 
         //todo аналогичные CreateScene-методы для разных сцен

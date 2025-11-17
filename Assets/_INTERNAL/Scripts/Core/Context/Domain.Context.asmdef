@@ -2,7 +2,8 @@
     "name": "Domain.Context",
     "rootNamespace": "",
     "references": [
-        "GUID:8325452b6419bda4ab806c8cbcac6eea"
+        "GUID:8325452b6419bda4ab806c8cbcac6eea",
+        "GUID:e51da5d9e1dbbda49b4341377f92c40e"
     ],
     "includePlatforms": [
         "Android",

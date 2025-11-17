@@ -1,4 +1,5 @@
-﻿using R3;
+﻿using Core.Context;
+using R3;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,10 @@ namespace UI.Views.MainGameViews
         [SerializeField] private Button _secondSomeGoToButton;
 
         private readonly Subject<MainGameSceneButtonActions> _actions = new();
+        private readonly Subject<DeliveryContext> _newDeliverySignal = new();
 
         public Observable<MainGameSceneButtonActions> MainGameActions => _actions.AsObservable();
+        public Observable<DeliveryContext> DeliverySignal => _newDeliverySignal.AsObservable();
 
         private void Start()
         {
@@ -49,6 +52,7 @@ namespace UI.Views.MainGameViews
         private void HandleDeliveryPreparations()
         {
             _actions.OnNext(MainGameSceneButtonActions.StartDeliveryPreparations);
+            _newDeliverySignal.OnNext(new());
         }
 
         private void HandleSecondSomeToGoClick()

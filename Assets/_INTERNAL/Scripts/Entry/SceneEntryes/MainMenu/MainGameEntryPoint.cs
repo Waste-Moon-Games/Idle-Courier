@@ -1,7 +1,11 @@
-using Core.Context;
 using Core.Controllers.MainGame;
+using Core.GameWorldStates;
+using Core.StageFactory;
+using Core.StateMachine;
+using Entry.EntryData;
 using Entry.SceneEntryes.Gameplay;
 using R3;
+using UI.Lists;
 using UI.Roots.MainGameRootView;
 using UI.Views.MainGameViews;
 using UnityEngine;
@@ -26,25 +30,35 @@ namespace Entry.SceneEntryes.MainMenu
 
             _loader.LoadRoot(out UIMainGameRootView rootView);
             _loader.LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView, out UIMainGameDeliveryContextView contextView);
+            _loader.LoadResources(out DistrictListView districtListView, out TransportListView transportListView, out OrderListView orderListView);
+            _loader.LoadConfigs(out OrdersGeneratorConfig ordersGeneratorConfig, out ItemsCategoryConfigs itemsCategoryConfigs);
 
             rootView.AttachUI(buttonsView.gameObject);
             rootView.AttachUI(hudView.gameObject);
             rootView.AttachUI(contextView.gameObject);
 
-            var startDeliverySignal = new Subject<DeliveryContext>();
+            contextView.AttachView(districtListView.gameObject);
+            contextView.AttachView(transportListView.gameObject);
+            contextView.AttachView(orderListView.gameObject);
+
             GameplayEnterParams gameplayEnterParams = new();
 
-            contextView.Bind(startDeliverySignal);
-            UIMainGameController mainGameViewController = new(buttonsView, contextView, hudView);
+            var playerState = sceneContainer.Resolve<GameState>().PlayerState;
+            StageDependencies stageDependencies = new(districtListView, transportListView, orderListView, playerState);
 
-            contextView.ContextIsReady.Subscribe(contex =>
-            {
-                gameplayEnterParams.SetContex(contex);
-            }).AddTo(_disposables);
+            stageDependencies.InitConfigs(ordersGeneratorConfig, itemsCategoryConfigs);
+            buttonsView.DeliverySignal
+                .Subscribe(contex =>
+                {
+                    stageDependencies.SetContext(contex);
+                    gameplayEnterParams.SetContext(contex);
+                }).AddTo(_disposables);
+            
+            UIMainGameController mainGameViewController = new(buttonsView, contextView, hudView, new(new Factory(stageDependencies)));
 
             MainGameExitParams mainGameExitParams = new(gameplayEnterParams);
 
-            return startDeliverySignal.Select(_ => mainGameExitParams);
+            return contextView.StartDeliverySignal.Select(_ => mainGameExitParams);
         }
 
         private void CreateMainGameScene(DIContainer sceneContainer)

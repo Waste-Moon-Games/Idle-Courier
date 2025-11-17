@@ -14,7 +14,5 @@ namespace Entry.SceneEntryes.MainMenu
         {
             TargetSceneEnterParams = targetSceneEnterParams;
         }
-
-        public void SetContex(DeliveryContext context) => Context = context;
     }
 }

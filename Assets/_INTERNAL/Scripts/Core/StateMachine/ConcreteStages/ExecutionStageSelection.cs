@@ -11,6 +11,8 @@ namespace Core.StateMachine.ConcretStages
         private IStageController _controller;
         private IStageFactory _stageFactory;
 
+        public event Action OnStageCompleted;
+
         public ExecutionStageSelection(IStageController controller, StageDependencies deps)
         {
             _controller = controller;
@@ -38,7 +40,7 @@ namespace Core.StateMachine.ConcretStages
 
         private void HandleButtonClick()
         {
-            _controller.SetStage(_stageFactory.CreateResultStage(_controller));
+            OnStageCompleted?.Invoke();
         }
     }
 }

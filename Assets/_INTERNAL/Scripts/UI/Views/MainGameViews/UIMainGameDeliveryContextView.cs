@@ -1,5 +1,6 @@
 ﻿using Core.Context;
 using R3;
+using TMPro;
 using UI.Base;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,13 @@ namespace UI.Views.MainGameViews
     {
         [SerializeField] private Button _startDeliveryButton;
 
-        private Subject<DeliveryContext> _startDeliverySingal;
+        [field: SerializeField] public Button SelectDistrict {  get; private set; }
+        [field: SerializeField] public Button SelectTransport { get; private set; }
+        [field: SerializeField] public Button SelectOrder { get; private set; }
 
-        public Observable<DeliveryContext> ContextIsReady => _startDeliverySingal.AsObservable();
+        private readonly Subject<Unit> _startDeliverySignal = new();
+
+        public Observable<Unit> StartDeliverySignal => _startDeliverySignal.AsObservable();
 
         private void Start()
         {
@@ -30,11 +35,14 @@ namespace UI.Views.MainGameViews
             _startDeliveryButton.onClick.RemoveListener(HandleStartDeliveryButtonClick);
         }
 
-        public void Bind(Subject<DeliveryContext> startDeliverySignal) => _startDeliverySingal = startDeliverySignal; 
+        public void AttachView(GameObject view)
+        {
+            view.transform.SetParent(transform, false);
+        }
 
         private void HandleStartDeliveryButtonClick()
         {
-            _startDeliverySingal.OnNext(new());
+            _startDeliverySignal.OnNext(Unit.Default);
         }
     }
 }

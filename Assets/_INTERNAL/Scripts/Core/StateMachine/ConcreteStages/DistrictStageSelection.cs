@@ -1,8 +1,9 @@
 using Core.Context;
+using Core.GameWorldStates;
 using Core.Instances;
-using Core.StageFactory;
 using Core.Stages;
 using Entry.EntryData;
+using System;
 using UI.Lists;
 
 namespace Core.StateMachine.ConcretStages
@@ -10,22 +11,25 @@ namespace Core.StateMachine.ConcretStages
     public class DistrictStageSelection : IStage
     {
         private IStageController _controller;
-        private IStageFactory _stageFactory;
         private DistrictListView _districtListView;
         private DeliveryContext _contex;
+        private PlayerState _playerState;
+
+        public event Action OnStageCompleted;
 
         public DistrictStageSelection(IStageController controller, StageDependencies stageDependencies)
         {
             _controller = controller;
-            _stageFactory = _controller.StageFactory;
             _districtListView = stageDependencies.DistrictListView;
             _contex = stageDependencies.DeliveryContex;
+            _playerState = stageDependencies.PlayerState;
         }
 
         public void Enter()
         {
             if (!_districtListView.gameObject.activeSelf)
                 _districtListView.Show();
+            _districtListView.Init(_playerState.AvaliableInstances.DistrictInstances);
 
             _districtListView.OnDistrictSelected += HandleSelectedDistrict;
         }
@@ -44,7 +48,6 @@ namespace Core.StateMachine.ConcretStages
         public void Dispose()
         {
             _controller = null;
-            _stageFactory = null;
             _districtListView = null;
             _contex = null;
         }
@@ -52,7 +55,7 @@ namespace Core.StateMachine.ConcretStages
         private void HandleSelectedDistrict(DistrictInstance obj)
         {
             _contex.SetDistrict(obj);
-            _controller.SetStage(_stageFactory.CreateTransportSelectionStage(_controller));
+            OnStageCompleted?.Invoke();
         }
     }
 }

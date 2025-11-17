@@ -35,5 +35,11 @@ namespace Entry.SceneEntryes.MainMenu
             transportListView = Instantiate(tPrefab);
             orderListView = Instantiate(oPrefab);
         }
+
+        public void LoadConfigs(out OrdersGeneratorConfig ordersGeneratorConfig, out ItemsCategoryConfigs itemsCategoryConfigs)
+        {
+            ordersGeneratorConfig = Resources.Load<OrdersGeneratorConfig>("Configs/OrderGenerator/GeneratorConfig/GeneratorConfig");
+            itemsCategoryConfigs = Resources.Load<ItemsCategoryConfigs>("Configs/OrderGenerator/ItemsCategoryConfigs");
+        }
     }
 }

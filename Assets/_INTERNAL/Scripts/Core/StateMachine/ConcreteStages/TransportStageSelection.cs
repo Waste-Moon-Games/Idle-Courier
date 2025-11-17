@@ -1,7 +1,10 @@
-﻿using Core.Instances;
+﻿using Core.Context;
+using Core.GameWorldStates;
+using Core.Instances;
 using Core.StageFactory;
 using Core.Stages;
 using Entry.EntryData;
+using System;
 using UI.Lists;
 
 namespace Core.StateMachine.ConcretStages
@@ -11,18 +14,26 @@ namespace Core.StateMachine.ConcretStages
         private IStageController _controller;
         private IStageFactory _stageFactory;
         private TransportListView _transportListView;
+        private DeliveryContext _deliveryContext;
+        private PlayerState _playerState;
+
+        public event Action OnStageCompleted;
 
         public TransportStageSelection(IStageController controller, StageDependencies deps)
         {
             _controller = controller;
             _stageFactory = _controller.StageFactory;
             _transportListView = deps.TransportListView;
+            _deliveryContext = deps.DeliveryContex;
+            _playerState = deps.PlayerState;
         }
 
         public void Enter()
         {
             if (!_transportListView.gameObject.activeSelf)
                 _transportListView.Show();
+
+            _transportListView.Init(_playerState.AvaliableInstances.TransportInstances);
 
             _transportListView.OnTransportSelected += HandleSelectedTransport;
         }
@@ -47,7 +58,8 @@ namespace Core.StateMachine.ConcretStages
 
         private void HandleSelectedTransport(TransportInstance selectedTransport)
         {
-            _controller.SetStage(_stageFactory.CreateOrderSelectionStage(_controller));
+            _deliveryContext.SetTransport(selectedTransport);
+            OnStageCompleted?.Invoke();
         }
     }
 }

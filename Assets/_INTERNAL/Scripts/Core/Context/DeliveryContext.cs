@@ -8,9 +8,11 @@ namespace Core.Context
     {
         [field: SerializeField] public DistrictInstance SelectedDistrict {  get; private set; }
         [field: SerializeField] public TransportInstance SelectedTransport { get; private set; }
+        [field: SerializeField] public OrderGeneratedData SelectedOrder { get; private set; }
 
         public event Action<DistrictInstance> OnSelectedDistrict;
         public event Action<TransportInstance> OnSelectedTransport;
+        public event Action<OrderGeneratedData> OnSelectedOrder;
 
         public DeliveryContext()
         {
@@ -29,6 +31,12 @@ namespace Core.Context
             SelectedTransport = transport;
 
             OnSelectedTransport?.Invoke(SelectedTransport);
+        }
+
+        public void SetOrder(OrderGeneratedData order)
+        {
+            SelectedOrder = order;
+            OnSelectedOrder?.Invoke(SelectedOrder);
         }
     }
 }

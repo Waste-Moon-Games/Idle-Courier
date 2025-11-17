@@ -1,5 +1,6 @@
 ﻿using Core.StageFactory;
 using Core.Stages;
+using System;
 
 namespace Core.StateMachine
 {
@@ -9,6 +10,7 @@ namespace Core.StateMachine
         private IStage _curentStage;
 
         public IStageFactory StageFactory => _stageFactory;
+        public event Action OnStageCompleted;
 
         public StageController(IStageFactory stageFactory)
         {
@@ -30,6 +32,7 @@ namespace Core.StateMachine
             _curentStage?.Exit();
             _curentStage = newStage;
             _curentStage?.Enter();
+            _curentStage.OnStageCompleted += HandleCompletedStage;
         }
 
         public void Tick()
@@ -40,12 +43,18 @@ namespace Core.StateMachine
         public void ForceEnd()
         {
             _curentStage?.Exit();
+            _curentStage = null;
         }
 
         public void EndCycle()
         {
             _curentStage?.Exit();
             _curentStage = null;
+        }
+
+        private void HandleCompletedStage()
+        {
+            OnStageCompleted?.Invoke();
         }
     }
 }

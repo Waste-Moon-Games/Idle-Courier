@@ -228,8 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loader: {fileID: 943876863}
-  _itemsCategoryConfigs: {fileID: 11400000, guid: b546f0595b1ddd64d8f9be9b8c57a6e1, type: 2}
-  _ordersGeneratorConfig: {fileID: 11400000, guid: 01a9ef9a9273b204b81a9f5946f08c61, type: 2}
 --- !u!4 &677612916
 Transform:
   m_ObjectHideFlags: 0
