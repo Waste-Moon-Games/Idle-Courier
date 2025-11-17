@@ -1,5 +1,6 @@
 ﻿using UI.Lists;
 using UI.Roots.MainGameRootView;
+using UI.Views.GameplayView;
 using UI.Views.MainGameViews;
 using UnityEngine;
 
@@ -18,9 +19,18 @@ namespace Entry.SceneEntryes.MainMenu
             contextView = Instantiate(contextViewPrefab);
         }
 
-        public void LoadRoot(out UIMainGameRootView rootView)
+        public void LoadGameplayView(out UIGameplayHUDView hudView, out UIGameplayPauseView pauseView)
         {
-            UIMainGameRootView rootViewPrefab = Resources.Load<UIMainGameRootView>("UI/Roots/UIMainGameRootView");
+            UIGameplayHUDView hudViewPrefab = Resources.Load<UIGameplayHUDView>("UI/Views/Gameplay/UIGameplayHUDView");
+            UIGameplayPauseView pauseViewPrefab = Resources.Load<UIGameplayPauseView>("UI/Views/Gameplay/UIGameplayPauseView");
+
+            hudView = Instantiate(hudViewPrefab);
+            pauseView = Instantiate(pauseViewPrefab);
+        }
+
+        public void LoadRoot(out UIRootView rootView)
+        {
+            UIRootView rootViewPrefab = Resources.Load<UIRootView>("UI/Roots/UIMainGameRootView");
 
             rootView = Instantiate(rootViewPrefab);
         }

@@ -1,5 +1,6 @@
 ﻿using Core.Context;
 using R3;
+using System;
 using TMPro;
 using UI.Base;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace UI.Views.MainGameViews
 
         public Observable<Unit> StartDeliverySignal => _startDeliverySignal.AsObservable();
 
+        public event Action OnStartDeliveryButtonClick;
+
         private void Start()
         {
             if (gameObject.activeSelf)
@@ -35,6 +38,11 @@ namespace UI.Views.MainGameViews
             _startDeliveryButton.onClick.RemoveListener(HandleStartDeliveryButtonClick);
         }
 
+        public void NextScene()
+        {
+            _startDeliverySignal.OnNext(Unit.Default);
+        }
+
         public void AttachView(GameObject view)
         {
             view.transform.SetParent(transform, false);
@@ -42,7 +50,7 @@ namespace UI.Views.MainGameViews
 
         private void HandleStartDeliveryButtonClick()
         {
-            _startDeliverySignal.OnNext(Unit.Default);
+            OnStartDeliveryButtonClick?.Invoke();
         }
     }
 }

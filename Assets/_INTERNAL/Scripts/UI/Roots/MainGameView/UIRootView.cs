@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace UI.Roots.MainGameRootView
 {
-    public class UIMainGameRootView : MonoBehaviour
+    public class UIRootView : MonoBehaviour
     {
         [SerializeField] private Transform _sceneContentContainer;
 

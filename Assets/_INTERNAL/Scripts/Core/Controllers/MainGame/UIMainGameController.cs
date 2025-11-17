@@ -1,5 +1,6 @@
 ﻿using Core.StateMachine;
 using R3;
+using System;
 using UI.Views.MainGameViews;
 
 namespace Core.Controllers.MainGame
@@ -32,11 +33,29 @@ namespace Core.Controllers.MainGame
             StartInitButtons();
         }
 
+        public void Dispose()
+        {
+            _contextView.OnStartDeliveryButtonClick -= HandleStartDeliveryButtonClick;
+            _stageController.OnStageCompleted -= HandleCompletedStage;
+
+            _contextView.SelectDistrict.onClick.RemoveListener(HandleDistrictButtonClick);
+            _contextView.SelectTransport.onClick.RemoveListener(HandleTransportButtonClick);
+            _contextView.SelectOrder.onClick.RemoveListener(HandleOrderButtonClick);
+        }
+
         private void ButtonContextSubscribe()
         {
             _contextView.SelectDistrict.onClick.AddListener(HandleDistrictButtonClick);
             _contextView.SelectTransport.onClick.AddListener(HandleTransportButtonClick);
             _contextView.SelectOrder.onClick.AddListener(HandleOrderButtonClick);
+
+            _contextView.OnStartDeliveryButtonClick += HandleStartDeliveryButtonClick;
+        }
+
+        private void HandleStartDeliveryButtonClick()
+        {
+            if(!_contextView.SelectOrder.interactable)
+                _contextView.NextScene();
         }
 
         private void StartInitButtons()

@@ -15,11 +15,18 @@ namespace UI.Views.GameplayView
 
         private void Start()
         {
+            _progres.value = 0f;
+
             _pauseButton.onClick.AddListener(OnClickPauseButton);
         }
 
+        private void OnDestroy()
+        {
+            _pauseButton.onClick.RemoveListener(OnClickPauseButton);
+        }
+
         public void SetPeogressValue(float value) => _progres.value = value;
-        public void SetRewardVale(float reward) => _reward.text = $"{_reward}";
+        public void SetRewardVale(string reward) => _reward.text = $"{reward}";
 
         private void OnClickPauseButton()
         {

@@ -24,10 +24,16 @@ namespace UI.Views.GameplayView
             _playButton.onClick.AddListener(OnClickPlayButton);
         }
 
+        private void OnDestroy()
+        {
+            _exitButton.onClick.RemoveListener(OnClickExitButton);
+            _playButton.onClick.RemoveListener(OnClickPlayButton);
+        }
+
         public void SetDistrictInfo(string district) => _districtField.text = district;
         public void SetOrderInfo(string order) => _orderField.text = order;
         public void SetCountInfo(int count) => _countField.text = $"{count}";
-        public void SetDistanceInfo(int distance) => _distanceField.text = $"{distance}";
+        public void SetDistanceInfo(float distance) => _distanceField.text = $"{distance}";
 
 
         private void OnClickExitButton() => ExitButtonClicked?.Invoke();

@@ -19,16 +19,19 @@ namespace Entry.SceneEntryes.MainMenu
 
         private readonly CompositeDisposable _disposables = new();
 
+        private UIMainGameController _uiGameController;
+
         private void OnDestroy()
         {
             _disposables.Dispose();
+            _uiGameController.Dispose();
         }
 
         public Observable<MainGameExitParams> Run(DIContainer sceneContainer)
         {
             CreateMainGameScene(sceneContainer);
 
-            _loader.LoadRoot(out UIMainGameRootView rootView);
+            _loader.LoadRoot(out UIRootView rootView);
             _loader.LoadMainViews(out UIMainGameButtonsView buttonsView, out UIMainGameHUDView hudView, out UIMainGameDeliveryContextView contextView);
             _loader.LoadResources(out DistrictListView districtListView, out TransportListView transportListView, out OrderListView orderListView);
             _loader.LoadConfigs(out OrdersGeneratorConfig ordersGeneratorConfig, out ItemsCategoryConfigs itemsCategoryConfigs);
@@ -53,8 +56,8 @@ namespace Entry.SceneEntryes.MainMenu
                     stageDependencies.SetContext(contex);
                     gameplayEnterParams.SetContext(contex);
                 }).AddTo(_disposables);
-            
-            UIMainGameController mainGameViewController = new(buttonsView, contextView, hudView, new(new Factory(stageDependencies)));
+
+            _uiGameController = new(buttonsView, contextView, hudView, new(new Factory(stageDependencies)));
 
             MainGameExitParams mainGameExitParams = new(gameplayEnterParams);
 
