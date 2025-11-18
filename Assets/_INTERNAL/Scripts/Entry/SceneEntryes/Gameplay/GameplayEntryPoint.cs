@@ -19,7 +19,7 @@ public class GameplayEntryPoint : MonoBehaviour
         CreateGameplayScene(sceneContainer);
 
         _loader.LoadRoot(out UIRootView rootView);
-        _loader.LoadGameplayView(out UIGameplayHUDView hudView, out UIGameplayPauseView pauseView);
+        _loader.LoadGameplayUIView(out UIGameplayHUDView hudView, out UIGameplayPauseView pauseView);
 
         rootView.AttachUI(hudView.gameObject);
         rootView.AttachUI(pauseView.gameObject);

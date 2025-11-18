@@ -5,6 +5,7 @@ using Core.StateMachine;
 using Entry.EntryData;
 using Entry.SceneEntryes.Gameplay;
 using R3;
+using SO.Configs;
 using UI.Lists;
 using UI.Roots.MainGameRootView;
 using UI.Views.MainGameViews;

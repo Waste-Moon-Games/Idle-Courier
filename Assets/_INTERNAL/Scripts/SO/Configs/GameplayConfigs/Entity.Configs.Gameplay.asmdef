@@ -1,12 +1,8 @@
 {
-    "name": "Domain.Generator",
+    "name": "Entity.Configs.Gameplay",
     "rootNamespace": "",
     "references": [
-        "GUID:fc0cf36ec0ea42444abadf2659016f99",
-        "GUID:d71450ffc9ad2f74dbd8ed2030a7b353",
-        "GUID:d9fb4251719085d45a8d317cad338df7",
-        "GUID:e51da5d9e1dbbda49b4341377f92c40e",
-        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec"
+        "GUID:fc0cf36ec0ea42444abadf2659016f99"
     ],
     "includePlatforms": [
         "Android",
