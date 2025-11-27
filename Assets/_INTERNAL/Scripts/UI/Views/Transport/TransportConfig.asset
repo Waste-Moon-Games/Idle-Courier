@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TransportConfig
   m_EditorClassIdentifier: 
   <TransportData>k__BackingField:
+    Logo: {fileID: 0}
     Name: 
-    MaxSpeed: 0
-    Multiplier: 0
+    MaxSpeed: 1
+    Multiplier: 1
     Category: 
+    Description: 
+    Capacity: 0

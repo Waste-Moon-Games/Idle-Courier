@@ -1,4 +1,5 @@
-﻿using SO.Configs;
+﻿using Core.Generator;
+using SO.Configs;
 using UI.Lists;
 using UI.Roots.MainGameRootView;
 using UI.Views.GameplayView;
@@ -51,6 +52,11 @@ namespace Entry.SceneEntryes.MainMenu
         {
             ordersGeneratorConfig = Resources.Load<OrdersGeneratorConfig>("Configs/OrderGenerator/GeneratorConfig/GeneratorConfig");
             itemsCategoryConfigs = Resources.Load<ItemsCategoryConfigs>("Configs/OrderGenerator/ItemsCategoryConfigs");
+        }
+
+        public void LoadConfigs(out LevelGeneratorConfig levelGeneratorConfig)
+        {
+            levelGeneratorConfig = Resources.Load<LevelGeneratorConfig>("Configs/Gameplay/LevelGeneratorConfig");
         }
     }
 }

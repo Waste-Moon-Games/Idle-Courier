@@ -17,7 +17,9 @@
         "GUID:fc0cf36ec0ea42444abadf2659016f99",
         "GUID:831e4adcbde394943bc5534531059cf7",
         "GUID:669fd2b11aa9a994f976be7c9664d1ab",
-        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec"
+        "GUID:bb96a5548c3e0f1438053c24f4a2d1ec",
+        "GUID:2465697512cd1ba4a97eb4e6758a7e55",
+        "GUID:b043ed62c148a1f488e5fbb28a252943"
     ],
     "includePlatforms": [
         "Android",

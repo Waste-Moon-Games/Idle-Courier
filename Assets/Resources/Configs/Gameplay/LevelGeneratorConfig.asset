@@ -15,3 +15,6 @@ MonoBehaviour:
   <RoadwayViewPrefab>k__BackingField: {fileID: 7055351650514686031, guid: 7ae0bbbac4d986f4fb317d8556a3edf1, type: 3}
   <RoadwayInitCount>k__BackingField: 4
   <RoadwayPoolContainer>k__BackingField: {fileID: 6438018755063979924, guid: 07d0b336dda71d042b6413ed2efbeb73, type: 3}
+  <BariersViewPrefab>k__BackingField:
+  - {fileID: -1313619278960753900, guid: 0175fe52800812c4faa7357e7bd874b8, type: 3}
+  <BariersPoolContainer>k__BackingField: {fileID: 6890568913862705066, guid: 93a9dea8044a11347aa33191473da771, type: 3}
